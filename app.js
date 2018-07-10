@@ -1,16 +1,10 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const app = express();
-
+const app = require("express")();
+const bodyParser = require('body-parser');
 const routes = require('./routes/api');
 
-const url = 'mongodb://admin:admin369147@ds223161.mlab.com:23161/db_contact'
-mongoose.connect(url).then(res => {
-  console.log('Mongo connected!');
-}).catch(err => console.log(err));
-
+//Middleware
+app.use(bodyParser.json());
+// API Endpoint
 app.use('/api', routes);
-
-
 
 module.exports = app;
